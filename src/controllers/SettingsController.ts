@@ -8,10 +8,16 @@ class SettingsController {
     const { chat, username } = req.body;  
     
     const settingsService = new SettingsService();
-    
-    const settings = await settingsService.create({chat, username})
-  
-    return res.json(settings);    
+
+    try {
+      const settings = await settingsService.create({chat, username})
+      
+      return res.json(settings);
+    } catch (error) {
+      return res.status(400).json({
+        message: error.message
+      });
+    }        
   }
 }
 
