@@ -18,7 +18,6 @@ class UsersService {
     }
 
     const user = this.usersRepository.create({email})
-
     await this.usersRepository.save(user);
 
     return user;
